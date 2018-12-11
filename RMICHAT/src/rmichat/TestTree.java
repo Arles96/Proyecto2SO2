@@ -5,19 +5,32 @@
  */
 package rmichat;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Dario Mendoza
  */
-public class TestTree {
+public class TestTree implements Serializable{
     private TestTree parent;
     private ArrayList<TestTree> children;
+    private int val;
 
     public TestTree() {
-        parent = null;
-        children = new ArrayList();
+        this.parent = null;
+        this.children = new ArrayList();
+    }
+
+    public TestTree(int val) {
+        this.parent = null;
+        this.children = new ArrayList();
+        this.val = val;
+    }
+    
+    public TestTree(TestTree parent) {
+        this.parent = parent;
+        this.children = new ArrayList();
     }
 
     public TestTree getParent() {
@@ -41,7 +54,20 @@ public class TestTree {
     }
     
     public void addChildren(TestTree child) {
+        child.setParent(this);
         this.children.add(child);
     }
-    
+
+    public int getVal() {
+        return val;
+    }
+
+    public void setVal(int val) {
+        this.val = val;
+    }
+
+    @Override
+    public String toString() {
+        return "TestTree{" + "children=" + children + ", val=" + val + '}';
+    }
 }

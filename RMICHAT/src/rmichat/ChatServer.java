@@ -32,8 +32,13 @@ public class ChatServer {
                 for (int i = 0; i < server.client.size(); i++) {
                     if (server.getClient(i) != null) {
                         ChatInterface client = server.getClient(i);
-                        //String newMsg = "[" + server.getName() + "] " + msg;
-                        TestClass newMsg = new TestClass(1,2,"3");
+                        // String newMsg = "[" + server.getName() + "] " + msg;
+                        // TestClass newMsg = new TestClass(1,2,"3");
+                        TestTree newMsg = new TestTree(0);
+                        newMsg.addChildren(new TestTree(1));
+                        newMsg.addChildren(new TestTree(2));
+                        newMsg.getChild(0).addChildren(new TestTree(22));
+                        //System.out.println(newMsg);
                         client.sendObj(newMsg);
                         //client.send(newMsg);
                     }
