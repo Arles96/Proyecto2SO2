@@ -48,9 +48,9 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(33, 39, 51));
+        jPanel1.setBackground(new java.awt.Color(53, 86, 100));
 
-        jPanel2.setBackground(new java.awt.Color(11, 12, 16));
+        jPanel2.setBackground(new java.awt.Color(33, 39, 51));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 60)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
