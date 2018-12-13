@@ -17,7 +17,6 @@ public class Chat extends UnicastRemoteObject implements ChatInterface  {
  
 	public String name;
 	public ArrayList<ChatInterface> client = new ArrayList();
-        public ArrayList<String> messages = new ArrayList();
         
             
 	public Chat(String n)  throws RemoteException { 
@@ -36,8 +35,13 @@ public class Chat extends UnicastRemoteObject implements ChatInterface  {
 	}
  
 	public void send(String s) throws RemoteException{
-		System.out.println(s);
-                messages.add(s);
+            System.out.println(s);
+            //if (s.compareTo("request") == 0) {
+            for (int i = 0; i < client.size(); i++) {
+                client.get(i).send("Ok");
+            }
+                
+            //}
 	}
         
         public void sendObj(Object s) throws RemoteException{

@@ -28,8 +28,11 @@ public class ChatServer {
             registry.bind("ejemplo", server);
 
             while (true) {
-                String msg = s.nextLine().trim();
-                for (int i = 0; i < server.client.size(); i++) {
+                System.out.println("Server sleeping now");
+                Thread.sleep(50000);
+                System.out.println("Server woke up");
+                //String msg = s.nextLine().trim();
+                /*for (int i = 0; i < server.client.size(); i++) {
                     if (server.getClient(i) != null) {
                         ChatInterface client = server.getClient(i);
                         // String newMsg = "[" + server.getName() + "] " + msg;
@@ -42,11 +45,7 @@ public class ChatServer {
                         client.sendObj(newMsg);
                         //client.send(newMsg);
                     }
-                }
-                
-                for (String message : server.messages) {
-                    System.out.println(message);
-                }
+                }*/
             }
 
         } catch (Exception e) {
