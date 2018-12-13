@@ -19,19 +19,19 @@ import java.util.logging.Logger;
  *
  * @author Dario Mendoza
  */
-public class Server extends UnicastRemoteObject implements ServerInterface {
+public class Server2 extends UnicastRemoteObject implements ServerInterface {
     /*private*/public File rootDirectory;
     /*private*/public ArrayList<ClientInterface> clients;
     /*private*/public DirectoryTree dirTree;
 
-    public Server(File RootDirectory) {
+    public Server2(File RootDirectory) {
         this.rootDirectory = RootDirectory;
         this.clients = new ArrayList();
         this.dirTree = new DirectoryTree();
         fillTree(dirTree, rootDirectory);
     }
     
-    public Server(File RootDirectory, ArrayList<ClientInterface> clients, DirectoryTree dirTree) {
+    public Server2(File RootDirectory, ArrayList<ClientInterface> clients, DirectoryTree dirTree) {
         this.rootDirectory = RootDirectory;
         this.clients = clients;
         this.dirTree = dirTree;
@@ -50,14 +50,18 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     }
     
     @Override
-    public void joinServer(ClientInterface newClient){
+    public void joinServer(ClientInterface newClient) throws RemoteException{
         clients.add(newClient);
-        newClient.sendTree(dirTree);
+        try {
+            newClient.sendTree(dirTree);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Server2.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void createDirectory(String path) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
@@ -67,12 +71,12 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
             txtFile = new Scanner(new File(this.rootDirectory.getAbsolutePath() + path)).useDelimiter("\\Z").next();
             client.sendFile(txtFile);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Server2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
     public void sendFileToServer(String data) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 }

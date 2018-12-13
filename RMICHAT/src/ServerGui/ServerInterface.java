@@ -15,6 +15,6 @@ import java.rmi.RemoteException;
 public interface ServerInterface extends Remote{
     public void sendFileToServer(String data) throws RemoteException;
     public void createDirectory(String path) throws RemoteException;
-    public void joinServer(ClientInterface newClient);
+    public void joinServer(ClientInterface newClient) throws RemoteException;
     public void requestFileFromServer(String path, ClientInterface client) throws RemoteException;
 }
