@@ -45,6 +45,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_CrearArchivo = new javax.swing.JButton();
         b_CrearDirectorio = new javax.swing.JButton();
         b_Borrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         textFile = new javax.swing.JTextArea();
 
@@ -136,7 +137,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_CrearDirectorio.setText("Crear Directorio");
         b_CrearDirectorio.setContentAreaFilled(false);
         b_CrearDirectorio.setOpaque(true);
-        jPanel3.add(b_CrearDirectorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 400, 50));
+        jPanel3.add(b_CrearDirectorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 400, 50));
 
         b_Borrar.setBackground(new java.awt.Color(199, 73, 58));
         b_Borrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -144,7 +145,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_Borrar.setText("Borrar");
         b_Borrar.setContentAreaFilled(false);
         b_Borrar.setOpaque(true);
-        jPanel3.add(b_Borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, 400, 50));
+        jPanel3.add(b_Borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 400, 50));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/images/refresh-arrow.png"))); // NOI18N
+        jButton1.setContentAreaFilled(false);
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, -1));
 
         textFile.setColumns(20);
         textFile.setRows(5);
@@ -158,8 +163,8 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1061, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -255,6 +260,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton b_Desconectar;
     private javax.swing.JButton b_ModificarNombre;
     private javax.swing.JButton b_salvar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
