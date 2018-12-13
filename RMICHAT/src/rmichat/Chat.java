@@ -11,12 +11,14 @@ package rmichat;
  */
 import java.rmi.*;
 import java.rmi.server.*;
+import java.util.ArrayList;
  
 public class Chat extends UnicastRemoteObject implements ChatInterface  {
  
 	public String name;
-	public ChatInterface client=null;
- 
+	public ArrayList<ChatInterface> client = new ArrayList();
+        
+            
 	public Chat(String n)  throws RemoteException { 
 		this.name=n;   
 	}
@@ -25,14 +27,24 @@ public class Chat extends UnicastRemoteObject implements ChatInterface  {
 	}
  
 	public void setClient(ChatInterface c){
-		client=c;
+		client.add(c);
 	}
  
-	public ChatInterface getClient(){
-		return client;
+	public ChatInterface getClient(int i){
+		return client.get(i);
 	}
  
 	public void send(String s) throws RemoteException{
-		System.out.println(s);
-	}	
+            System.out.println(s);
+            //if (s.compareTo("request") == 0) {
+            for (int i = 0; i < client.size(); i++) {
+                client.get(i).send("Ok");
+            }
+                
+            //}
+	}
+        
+        public void sendObj(Object s) throws RemoteException{
+            System.out.println(s);
+	}
 }
