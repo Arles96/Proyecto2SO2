@@ -10,6 +10,8 @@ package cliente;
  * @author Harold Mendoza
  */
 public class FramePrincipal extends javax.swing.JFrame {
+    
+    private Connection connection;
 
     /**
      * Creates new form FramePrincipal
