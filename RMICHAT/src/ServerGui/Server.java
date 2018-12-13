@@ -1,8 +1,13 @@
 package ServerGui;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -44,8 +49,30 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         }
     }
     
+    @Override
     public void joinServer(ClientInterface newClient){
         clients.add(newClient);
-        //TODO: newClient.sendTree(dirTree);
+        newClient.sendTree(dirTree);
+    }
+
+    @Override
+    public void createDirectory(String path) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void requestFileFromServer(String path, ClientInterface client) throws RemoteException {
+        String txtFile;
+        try {
+            txtFile = new Scanner(new File(this.rootDirectory.getAbsolutePath() + path)).useDelimiter("\\Z").next();
+            client.sendFile(txtFile);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void sendFileToServer(String data) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

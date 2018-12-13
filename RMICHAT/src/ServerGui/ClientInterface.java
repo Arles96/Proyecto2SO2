@@ -5,10 +5,13 @@
  */
 package ServerGui;
 
+import java.rmi.RemoteException;
+
 /**
  *
  * @author Dario Mendoza
  */
 public interface ClientInterface {
-    
+    public void sendFile(String data) throws RemoteException;
+    public void sendTree(DirectoryTree tree) throws RemoteException;
 }
