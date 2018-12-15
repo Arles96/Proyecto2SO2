@@ -5,6 +5,9 @@
  */
 package cliente;
 
+import java.awt.Color;
+import javax.swing.JButton;
+
 /**
  *
  * @author Harold Mendoza
@@ -71,6 +74,14 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_ModificarNombre.setBorderPainted(false);
         b_ModificarNombre.setContentAreaFilled(false);
         b_ModificarNombre.setOpaque(true);
+        b_ModificarNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b_ModificarNombreMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b_ModificarNombreMouseExited(evt);
+            }
+        });
 
         b_salvar.setBackground(new java.awt.Color(71, 120, 197));
         b_salvar.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -79,6 +90,14 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_salvar.setBorderPainted(false);
         b_salvar.setContentAreaFilled(false);
         b_salvar.setOpaque(true);
+        b_salvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b_salvarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b_salvarMouseExited(evt);
+            }
+        });
 
         labelNombre.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         labelNombre.setForeground(new java.awt.Color(23, 35, 51));
@@ -96,6 +115,14 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_Conectar.setMaximumSize(new java.awt.Dimension(137, 33));
         b_Conectar.setMinimumSize(new java.awt.Dimension(137, 33));
         b_Conectar.setOpaque(true);
+        b_Conectar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b_ConectarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b_ConectarMouseExited(evt);
+            }
+        });
         b_Conectar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_ConectarActionPerformed(evt);
@@ -110,6 +137,14 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_Desconectar.setBorderPainted(false);
         b_Desconectar.setContentAreaFilled(false);
         b_Desconectar.setOpaque(true);
+        b_Desconectar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b_DesconectarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b_DesconectarMouseExited(evt);
+            }
+        });
         b_Desconectar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_DesconectarActionPerformed(evt);
@@ -121,15 +156,23 @@ public class FramePrincipal extends javax.swing.JFrame {
         treeStructure.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane1.setViewportView(treeStructure);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 420, 310));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 470, 310));
 
-        b_CrearArchivo.setBackground(new java.awt.Color(104, 151, 117));
+        b_CrearArchivo.setBackground(new java.awt.Color(104, 160, 88));
         b_CrearArchivo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         b_CrearArchivo.setForeground(new java.awt.Color(255, 255, 255));
         b_CrearArchivo.setText("Crear Archivo");
         b_CrearArchivo.setContentAreaFilled(false);
         b_CrearArchivo.setOpaque(true);
-        jPanel3.add(b_CrearArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 400, 50));
+        b_CrearArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b_CrearArchivoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b_CrearArchivoMouseExited(evt);
+            }
+        });
+        jPanel3.add(b_CrearArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 470, 50));
 
         b_CrearDirectorio.setBackground(new java.awt.Color(71, 120, 197));
         b_CrearDirectorio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -137,7 +180,15 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_CrearDirectorio.setText("Crear Directorio");
         b_CrearDirectorio.setContentAreaFilled(false);
         b_CrearDirectorio.setOpaque(true);
-        jPanel3.add(b_CrearDirectorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 400, 50));
+        b_CrearDirectorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b_CrearDirectorioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b_CrearDirectorioMouseExited(evt);
+            }
+        });
+        jPanel3.add(b_CrearDirectorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 470, 50));
 
         b_Borrar.setBackground(new java.awt.Color(199, 73, 58));
         b_Borrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -145,7 +196,15 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_Borrar.setText("Borrar");
         b_Borrar.setContentAreaFilled(false);
         b_Borrar.setOpaque(true);
-        jPanel3.add(b_Borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 400, 50));
+        b_Borrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b_BorrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b_BorrarMouseExited(evt);
+            }
+        });
+        jPanel3.add(b_Borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 470, 50));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/images/refresh-arrow.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
@@ -163,8 +222,9 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1061, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -178,21 +238,20 @@ public class FramePrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(b_ModificarNombre)
                             .addComponent(labelNombre))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(b_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))
+                        .addGap(14, 14, 14)
+                        .addComponent(b_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,7 +267,31 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //Light Versions
+    public void setColorBlue(JButton b){
+       b.setBackground(new Color(71,120,197)); 
+    }
+    public void setColorRed(JButton b){
+       b.setBackground(new Color(199,73,58)); 
+    }
+    
+    public void setColorGreen(JButton b){
+       b.setBackground(new Color(104,160,88)); 
+    }
+    //Dark Versions
+    public void setColorBlueDark(JButton b){
+       b.setBackground(new Color(71,105,179)); 
+    }
+    public void setColorRedDark(JButton b){
+       b.setBackground(new Color(199,63,33)); 
+    }
+    public void setColorGreenDark(JButton b){
+       b.setBackground(new Color(104,152,76)); 
+    }
+    
+    
+    
     private void b_DesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_DesconectarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_DesconectarActionPerformed
@@ -216,6 +299,76 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void b_ConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_ConectarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_ConectarActionPerformed
+
+    private void b_salvarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_salvarMouseEntered
+        // TODO add your handling code here:
+        setColorBlueDark(b_salvar);
+    }//GEN-LAST:event_b_salvarMouseEntered
+
+    private void b_salvarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_salvarMouseExited
+        // TODO add your handling code here:
+        setColorBlue(b_salvar);
+    }//GEN-LAST:event_b_salvarMouseExited
+
+    private void b_ModificarNombreMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_ModificarNombreMouseEntered
+        // TODO add your handling code here:
+        setColorGreen(b_ModificarNombre);
+    }//GEN-LAST:event_b_ModificarNombreMouseEntered
+
+    private void b_ModificarNombreMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_ModificarNombreMouseExited
+        // TODO add your handling code here:
+        setColorBlue(b_ModificarNombre);
+    }//GEN-LAST:event_b_ModificarNombreMouseExited
+
+    private void b_CrearArchivoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_CrearArchivoMouseEntered
+        // TODO add your handling code here:
+        setColorGreenDark(b_CrearArchivo);
+    }//GEN-LAST:event_b_CrearArchivoMouseEntered
+
+    private void b_CrearArchivoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_CrearArchivoMouseExited
+        // TODO add your handling code here:
+        setColorGreen(b_CrearArchivo);
+    }//GEN-LAST:event_b_CrearArchivoMouseExited
+
+    private void b_CrearDirectorioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_CrearDirectorioMouseEntered
+        // TODO add your handling code here:
+        setColorBlueDark(b_CrearDirectorio);
+    }//GEN-LAST:event_b_CrearDirectorioMouseEntered
+
+    private void b_CrearDirectorioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_CrearDirectorioMouseExited
+        // TODO add your handling code here:
+        setColorBlue(b_CrearDirectorio);
+    }//GEN-LAST:event_b_CrearDirectorioMouseExited
+
+    private void b_BorrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_BorrarMouseEntered
+        // TODO add your handling code here:
+        setColorRedDark(b_Borrar);
+    }//GEN-LAST:event_b_BorrarMouseEntered
+
+    private void b_BorrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_BorrarMouseExited
+        // TODO add your handling code here:
+        setColorRed(b_Borrar);
+    }//GEN-LAST:event_b_BorrarMouseExited
+
+    private void b_ConectarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_ConectarMouseEntered
+        // TODO add your handling code here:
+        setColorBlueDark(b_Conectar);
+    }//GEN-LAST:event_b_ConectarMouseEntered
+
+    private void b_ConectarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_ConectarMouseExited
+        // TODO add your handling code here:
+        setColorBlue(b_Conectar);
+    }//GEN-LAST:event_b_ConectarMouseExited
+
+    private void b_DesconectarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_DesconectarMouseEntered
+        // TODO add your handling code here:
+        setColorRedDark(b_Desconectar);
+    }//GEN-LAST:event_b_DesconectarMouseEntered
+
+    private void b_DesconectarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_DesconectarMouseExited
+        // TODO add your handling code here:
+        setColorRed(b_Desconectar);
+    }//GEN-LAST:event_b_DesconectarMouseExited
 
     /**
      * @param args the command line arguments
