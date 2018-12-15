@@ -5,6 +5,9 @@
  */
 package cliente;
 
+import java.rmi.RemoteException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Harold Mendoza
@@ -20,6 +23,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("BEANFS");
+        try {
+            connection = new Connection("172.16.31.76", 8888);
+            connection.status();
+        } catch (RemoteException e) {
+            JOptionPane.showMessageDialog(this, "Error en la conexion");
+        }
     }
 
     /**

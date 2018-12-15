@@ -36,4 +36,12 @@ public class Connection {
         this.server = LocateRegistry.getRegistry(host, port);
     }
     
+    public void status () {
+        if (this.server != null) {
+            System.out.println("Conectado");
+        } else {
+            System.out.println("No esta conectado");
+        }
+    }
+    
 }
