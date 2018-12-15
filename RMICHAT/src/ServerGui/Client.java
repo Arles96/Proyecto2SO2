@@ -1,47 +1,35 @@
-package ServerGui;
-
-import java.io.File;
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package ServerGui;
 
 /**
  *
- * @author Dario Mendoza
+ * @author xioma
  */
-public class Client extends UnicastRemoteObject implements ClientInterface{
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import rmichat.*;
+import java.rmi.*;
+import java.rmi.server.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class Client extends UnicastRemoteObject implements ClientInterface {
+
     private ServerInterface server;
     public DirectoryTree tree;
     private boolean active;
     private File rootFolder;
 
-    public Client(String rootFolder) {
-        this.rootFolder = new File(rootFolder);
-    }
-    
-    public Client(ServerInterface server, String rootFolder) {
-        this.server = server;
-        this.rootFolder = new File(rootFolder);
-    }
-    
-    public Client(ServerInterface server, File rootFolder) {
-        this.server = server;
-        this.rootFolder = rootFolder;
-    }
-    
-    public Client(ServerInterface server) {
-        this.server = server;
-        this.active = true;
-    }
-    
-    public Client(ServerInterface server, boolean active) {
-        this.server = server;
-        this.active = active;
+    public Client(String path) throws RemoteException {
+        rootFolder = new File(path);
     }
 
     public boolean isActive() {
@@ -61,13 +49,23 @@ public class Client extends UnicastRemoteObject implements ClientInterface{
     }
     
     @Override
-    public void sendFile(String data) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void sendFile(String data, String path) throws RemoteException {
+        try {
+            File filePath = new File(rootFolder.getAbsolutePath() + path);
+            filePath.getParentFile().mkdirs();
+            FileWriter fr = new FileWriter(filePath);
+            fr.write(data);
+            fr.flush();
+            fr.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }       
     }
 
     @Override
     public void sendTree(DirectoryTree tree) throws RemoteException {
-        this.tree = tree;
+        Test.PrintTree(tree, "");
     }
-    
 }

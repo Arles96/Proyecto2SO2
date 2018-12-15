@@ -36,7 +36,7 @@ public class ServerGui extends javax.swing.JFrame {
                 curDir.mkdir();
             }
         }
-        server = new Server2(curDir);
+        server = new Server(curDir);
         
         Registry registry = LocateRegistry.createRegistry(8888);
         registry.bind("DFS_Server", server);
@@ -123,5 +123,5 @@ public class ServerGui extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
-    public Server2 server;
+    public Server server;
 }

@@ -38,7 +38,6 @@ public class Test {
             }else{
                 tree.addChildren(new DirectoryTree(file.getName(), false));
             }
-            
         }
     }
     
