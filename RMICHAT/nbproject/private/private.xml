@@ -3,10 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/arles/Documents/Sistemas%20Operativos%202/Proyecto2SO2/RMICHAT/src/ServerGui/ServerInterface.java</file>
             <file>file:/C:/Users/arles/Documents/Sistemas%20Operativos%202/Proyecto2SO2/RMICHAT/src/rmichat/ChatServer.java</file>
             <file>file:/C:/Users/arles/Documents/Sistemas%20Operativos%202/Proyecto2SO2/RMICHAT/src/rmichat/ChatClient.java</file>
             <file>file:/C:/Users/arles/Documents/Sistemas%20Operativos%202/Proyecto2SO2/RMICHAT/src/ServerGui/ServerGui.java</file>
+=======
+            <file>file:/C:/Users/Dario%20Mendoza/Documents/GitHub/Proyecto2SO2/RMICHAT/src/ServerGui/ClienteSide.java</file>
+            <file>file:/C:/Users/Dario%20Mendoza/Documents/GitHub/Proyecto2SO2/RMICHAT/src/ServerGui/Test.java</file>
+            <file>file:/C:/Users/Dario%20Mendoza/Documents/GitHub/Proyecto2SO2/RMICHAT/src/ServerGui/Client.java</file>
+            <file>file:/C:/Users/Dario%20Mendoza/Documents/GitHub/Proyecto2SO2/RMICHAT/src/ServerGui/Server.java</file>
+            <file>file:/C:/Users/Dario%20Mendoza/Documents/GitHub/Proyecto2SO2/RMICHAT/src/ServerGui/ClientInterface.java</file>
+            <file>file:/C:/Users/Dario%20Mendoza/Documents/GitHub/Proyecto2SO2/RMICHAT/src/ServerGui/ServerInterface.java</file>
+            <file>file:/C:/Users/Dario%20Mendoza/Documents/GitHub/Proyecto2SO2/RMICHAT/src/ServerGui/ServerGui.java</file>
+            <file>file:/C:/Users/Dario%20Mendoza/Documents/GitHub/Proyecto2SO2/RMICHAT/src/ServerGui/DirectoryTree.java</file>
+>>>>>>> 8dfee1db8b35eed726bf761947e0db0555acbafd
         </group>
     </open-files>
 </project-private>
