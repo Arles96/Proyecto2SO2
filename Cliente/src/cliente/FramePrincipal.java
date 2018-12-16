@@ -26,16 +26,17 @@ public class FramePrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("BEANFS");
-        try {
-            connection = new Connection(8888);
-            JOptionPane.showMessageDialog(this, "Se conecto");
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error en la conexion");
-        } catch (NotBoundException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error al recibir el arbol");
-        }
+//        try {
+//            connection = new Connection(8888);
+//            JOptionPane.showMessageDialog(this, "Se conecto");
+//        } catch (RemoteException e) {
+//            e.printStackTrace();
+//            JOptionPane.showMessageDialog(this, "Error en la conexion");
+//        } catch (NotBoundException ex) {
+//            ex.printStackTrace();
+//            JOptionPane.showMessageDialog(this, "Error al recibir el arbol");
+//        }
+        Connection.testConnection();
     }
 
     /**
