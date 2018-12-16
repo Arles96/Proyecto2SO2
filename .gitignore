@@ -1,6 +1,11 @@
-<<<<<<< HEAD
 /Cliente/nbproject/private/
 /Cliente/build/
+/Cliente/nbproject/private
+/Cliente/build/
+/RMICHAT/nbproject/private
+/RMICHAT/build/
+/BeanDFS/nbproject/private
+/BeanDFS/build/
 
 # Compiled class file
 *.class
@@ -20,7 +25,6 @@
 *.zip
 *.tar.gz
 *.rar
-=======
 /Cliente/nbproject/private/
 /Cliente/build/
->>>>>>> 8dfee1db8b35eed726bf761947e0db0555acbafd
+*.rar
