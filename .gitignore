@@ -1,5 +1,7 @@
-/Cliente/nbproject/private/
-/Cliente/build/
+Cliente/nbproject/private/
+Cliente/build/
+RMICHAT/nbproject/private/
+RMICHAT/build/
 
 # Compiled class file
 *.class
