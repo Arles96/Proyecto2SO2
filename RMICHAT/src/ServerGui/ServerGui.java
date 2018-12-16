@@ -30,6 +30,7 @@ public class ServerGui extends javax.swing.JFrame {
         JFileChooser jfc = new JFileChooser(curDir);
         jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int sel = jfc.showOpenDialog(null);
+        System.out.println("Hola");
         if(sel != JFileChooser.APPROVE_OPTION){
             curDir = new File(curDir.getAbsolutePath() + "\\DFS_Files");
             if(!curDir.exists()){
