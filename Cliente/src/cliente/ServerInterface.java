@@ -13,8 +13,9 @@ import java.rmi.RemoteException;
  * @author Dario Mendoza
  */
 public interface ServerInterface extends Remote{
-    public void sendFileToServer() throws RemoteException;
+    public void sendFileToServer(String data, String path) throws RemoteException;
+    public void sendNewFileToServer(String data, String path) throws RemoteException;
     public void createDirectory(String path) throws RemoteException;
-    public void login(ClientInterface newClient) throws RemoteException;
-    public void requestFileFromServer(String path) throws RemoteException;
+    public void joinServer(ClientInterface newClient) throws RemoteException;
+    public void requestFileFromServer(String path, ClientInterface client) throws RemoteException;
 }
