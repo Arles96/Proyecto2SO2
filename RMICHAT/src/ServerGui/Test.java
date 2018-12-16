@@ -42,7 +42,7 @@ public class Test {
     }
     
     public static void PrintTree(DirectoryTree tree, String tabs){
-        System.out.println(tabs + tree.getName() + "\t" + tree.getPath());
+        System.out.println(tabs + tree.getName() + "\t" + tree.getPath() + "\t" + tree.isDirectory());
         for (DirectoryTree dirTree : tree.getChildren()) {
             PrintTree(dirTree, tabs + "\t");
         }

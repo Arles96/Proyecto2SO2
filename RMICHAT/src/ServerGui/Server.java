@@ -43,7 +43,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     private void fillTree(DirectoryTree tree, File path){
         for (File file : path.listFiles()) {
             if (file.isDirectory()){
-                tree.addChildren(new DirectoryTree(file.getName(), false));
+                tree.addChildren(new DirectoryTree(file.getName(), true));
                 fillTree(tree.getChild(tree.getChildren().size() - 1), file);
             }else{
                 tree.addChildren(new DirectoryTree(file.getName(), false));
@@ -84,6 +84,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
             fr.close();
             for (ClientInterface client : clients) {
                 //client.notifyChangedFile();
+                //
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);

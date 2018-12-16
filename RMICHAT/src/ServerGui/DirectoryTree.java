@@ -33,7 +33,6 @@ public class DirectoryTree implements Serializable{
         this.directory = directory;
         this.parent = null;
         this.children = new ArrayList();
-        this.directory = true;
         this.path = "";
     }
     
