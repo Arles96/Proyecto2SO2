@@ -238,12 +238,6 @@
                 <Property name="text" type="java.lang.String" value="Desconectar"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[137, 33]"/>
-                </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[137, 33]"/>
-                </Property>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>

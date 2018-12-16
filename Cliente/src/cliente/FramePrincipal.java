@@ -5,11 +5,19 @@
  */
 package cliente;
 
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Harold Mendoza
  */
 public class FramePrincipal extends javax.swing.JFrame {
+    
+    private Connection connection;
 
     /**
      * Creates new form FramePrincipal
@@ -18,6 +26,16 @@ public class FramePrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("BEANFS");
+        try {
+            connection = new Connection(8888);
+            JOptionPane.showMessageDialog(this, "Se conecto");
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error en la conexion");
+        } catch (NotBoundException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al recibir el arbol");
+        }
     }
 
     /**
