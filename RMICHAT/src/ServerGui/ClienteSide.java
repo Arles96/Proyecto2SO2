@@ -21,7 +21,7 @@ import rmichat.ChatInterface;
 public class ClienteSide {
     public static void main(String[] argv) throws RemoteException, NotBoundException{
         ClientInterface client = new Client(System.getenv("UserProfile") + "\\Documents\\ClientFiles");
-        Registry registry = LocateRegistry.getRegistry(/*"192.168.2.6",*/8888);
+        Registry registry = LocateRegistry.getRegistry("192.168.1.15",8888);
         ServerInterface server = (ServerInterface) registry.lookup("DFS_Server");
         server.joinServer(client);
         server.requestFileFromServer("\\folder1\\text1.txt", client);
