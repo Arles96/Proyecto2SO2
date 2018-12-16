@@ -24,7 +24,7 @@ public class ChatClient {
             String name = s.nextLine().trim();
             ChatInterface client = new Chat(name);
             //TODO: Change host in gui
-            Registry registry = LocateRegistry.getRegistry(/*"192.168.43.44",*/8888);
+            Registry registry = LocateRegistry.getRegistry("192.168.43.59",8888);
             ChatInterface server = (ChatInterface) registry.lookup("ejemplo");
             String msg = "[" + client.getName() + "] conectado!";
             server.send(msg);

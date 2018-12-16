@@ -6,6 +6,12 @@
 package ServerGui;
 
 import java.io.File;
+import java.rmi.AlreadyBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 /**
@@ -17,7 +23,7 @@ public class ServerGui extends javax.swing.JFrame {
     /**
      * Creates new form ServerGui
      */
-    public ServerGui() {
+    public ServerGui() throws RemoteException, AlreadyBoundException {
         initComponents();
         
         File curDir = new File(System.getenv("UserProfile") + "\\Documents");
@@ -31,7 +37,9 @@ public class ServerGui extends javax.swing.JFrame {
             }
         }
         server = new Server(curDir);
-        //Test.PrintTree(server.dirTree, "");
+        
+        Registry registry = LocateRegistry.createRegistry(8888);
+        registry.bind("DFS_Server", server);
     }
 
     /**
@@ -102,7 +110,11 @@ public class ServerGui extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ServerGui().setVisible(true);
+                try {
+                    new ServerGui().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(ServerGui.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
