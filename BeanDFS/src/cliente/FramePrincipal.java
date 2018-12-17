@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultTreeModel;
+import events.EventosBotonesCrear;
 
 /**
  *
@@ -27,6 +28,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     
     private Connection connection = new Connection();
     private final JtreeEvents jtreeEvents = new JtreeEvents();
+    private final EventosBotonesCrear bCrearEvents = new EventosBotonesCrear();
 
     /**
      * Creates new form FramePrincipal
@@ -210,6 +212,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_CrearDirectorio.setContentAreaFilled(false);
         b_CrearDirectorio.setOpaque(true);
         b_CrearDirectorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_CrearDirectorioMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 b_CrearDirectorioMouseEntered(evt);
             }
@@ -416,6 +421,16 @@ public class FramePrincipal extends javax.swing.JFrame {
 //            Logger.getLogger(FramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
 //        }
     }//GEN-LAST:event_b_ConectarMouseClicked
+
+    private void b_CrearDirectorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_CrearDirectorioMouseClicked
+        // TODO add your handling code here:
+        String nombre = JOptionPane.showInputDialog("Ingresar nombre de directorio:");
+        System.out.println(nombre);
+        try {
+            bCrearEvents.crearDirectorio(nombre, treeStructure, connection);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_b_CrearDirectorioMouseClicked
 
     /**
      * @param args the command line arguments

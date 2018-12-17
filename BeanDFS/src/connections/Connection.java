@@ -31,7 +31,7 @@ public class Connection {
         registry = LocateRegistry.getRegistry(port);
         server = (ServerInterface) registry.lookup("DFS_Server");
         server.joinServer(client);
-        server.requestFileFromServer("\\folder1\\text1.txt", client);
+        //server.requestFileFromServer("\\folder1\\text1.txt", client);
     }
 
     public Connection() {
