@@ -51,9 +51,9 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         }
     }
     
-    private void refillTree(DirectoryTree tree, File path){
-        tree = new DirectoryTree();
-        fillTree(tree, path);
+    private void refillTree(File path){
+        dirTree = new DirectoryTree();
+        fillTree(dirTree, path);
     }
     
     private void sendTreeToAll() throws RemoteException{
@@ -95,7 +95,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     public void createDirectory(String path) throws RemoteException {
         File newDir = new File(rootDirectory.getAbsolutePath() + path);
         newDir.mkdirs();
-        refillTree(dirTree, rootDirectory);
+        refillTree(rootDirectory);
         sendTreeToAll();
     }
 
@@ -120,6 +120,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
             fr.write(data);
             fr.flush();
             fr.close();
+            refillTree(rootDirectory);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
