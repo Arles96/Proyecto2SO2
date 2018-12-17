@@ -67,6 +67,14 @@ public class Connection {
         this.registry = LocateRegistry.getRegistry(host, port);
     }
     
+    public void setConnection (String host) throws RemoteException, NotBoundException {
+        client = new Client(System.getenv("UserProfile") + "\\Documents\\ClientFiles");
+        registry = LocateRegistry.getRegistry(host,8888);
+        server = (ServerInterface) registry.lookup("DFS_Server");
+        server.joinServer(client);
+        server.requestFileFromServer("\\folder1\\text1.txt", client);
+    }
+    
     public void status () {
         if (this.registry != null) {
             System.out.println("Conectado");

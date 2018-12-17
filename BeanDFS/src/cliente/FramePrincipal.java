@@ -13,6 +13,8 @@ import events.JtreeEvents;
 import java.awt.Color;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultTreeModel;
@@ -23,7 +25,7 @@ import javax.swing.tree.DefaultTreeModel;
  */
 public class FramePrincipal extends javax.swing.JFrame {
     
-    private Connection connection;
+    private Connection connection = new Connection();
     private final JtreeEvents jtreeEvents = new JtreeEvents();
 
     /**
@@ -135,6 +137,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_Conectar.setMinimumSize(new java.awt.Dimension(137, 33));
         b_Conectar.setOpaque(true);
         b_Conectar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_ConectarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 b_ConectarMouseEntered(evt);
             }
@@ -400,6 +405,17 @@ public class FramePrincipal extends javax.swing.JFrame {
         } catch (RemoteException e) {
         }
     }//GEN-LAST:event_treeStructureMouseClicked
+
+    private void b_ConectarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_ConectarMouseClicked
+//        String ip = JOptionPane.showInputDialog(this, "Ingrese la ip del servidor");
+//        try {
+//            connection.setConnection(ip);
+//        } catch (RemoteException ex) {
+//            JOptionPane.showMessageDialog(this, );
+//        } catch (NotBoundException ex) {
+//            Logger.getLogger(FramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }//GEN-LAST:event_b_ConectarMouseClicked
 
     /**
      * @param args the command line arguments

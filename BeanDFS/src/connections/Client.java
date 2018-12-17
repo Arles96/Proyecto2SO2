@@ -27,6 +27,7 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
     public DirectoryTree tree;
     private boolean active;
     private File rootFolder;
+    private String path;
 
     public Client(String path) throws RemoteException {
         rootFolder = new File(path);
@@ -51,6 +52,7 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
     @Override
     public void sendFile(String data, String path) throws RemoteException {
         try {
+            this.path = path;
             File filePath = new File(rootFolder.getAbsolutePath() + path);
             filePath.getParentFile().mkdirs();
             FileWriter fr = new FileWriter(filePath);
@@ -74,8 +76,8 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
         String data = "";
         try {
             String string;
-            System.out.println(rootFolder);
-            FileReader f = new FileReader(rootFolder);
+            File filePath = new File(rootFolder.getAbsolutePath() + path);
+            FileReader f = new FileReader(filePath);
             BufferedReader b = new BufferedReader(f);
             while((string = b.readLine())!=null) {
                 data += string;
