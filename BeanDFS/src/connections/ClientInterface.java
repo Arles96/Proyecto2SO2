@@ -15,5 +15,7 @@ import java.rmi.RemoteException;
 public interface ClientInterface extends Remote{
     public void sendFile(String data, String path) throws RemoteException;
     public void sendTree(DirectoryTree tree) throws RemoteException;
+    public void createDirectory(String path) throws RemoteException;
+    public void createFile (String data, String path) throws RemoteException;
     public String getDataFile () throws RemoteException;
 }

@@ -197,6 +197,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_CrearArchivo.setContentAreaFilled(false);
         b_CrearArchivo.setOpaque(true);
         b_CrearArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_CrearArchivoMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 b_CrearArchivoMouseEntered(evt);
             }
@@ -450,6 +453,15 @@ public class FramePrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al actualizar el arbol", "Error", ERROR);
         }
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void b_CrearArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_CrearArchivoMouseClicked
+        try {
+            String name = JOptionPane.showInputDialog("Ingrese el nombre del archivo");
+            bCrearEvents.createFile(name, treeStructure, connection);
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(this, "Error al crear el archivo", "Error", ERROR);
+        }
+    }//GEN-LAST:event_b_CrearArchivoMouseClicked
 
 
     /**
