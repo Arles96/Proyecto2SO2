@@ -5,7 +5,9 @@
  */
 package cliente;
 
+import connections.ClientInterface;
 import connections.Connection;
+import connections.DirectoryTreeClient;
 import connections.Server;
 import events.JtreeEvents;
 import java.awt.Color;
@@ -13,6 +15,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -170,6 +173,11 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
         treeStructure.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        treeStructure.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                treeStructureMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(treeStructure);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 470, 310));
@@ -385,6 +393,13 @@ public class FramePrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         setColorRed(b_Desconectar);
     }//GEN-LAST:event_b_DesconectarMouseExited
+
+    private void treeStructureMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_treeStructureMouseClicked
+        try {
+            jtreeEvents.showDataFile(treeStructure, textFile, connection);
+        } catch (RemoteException e) {
+        }
+    }//GEN-LAST:event_treeStructureMouseClicked
 
     /**
      * @param args the command line arguments

@@ -9,6 +9,7 @@ package connections;
  *
  * @author xioma
  */
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -66,5 +67,23 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
     @Override
     public void sendTree(DirectoryTree tree) throws RemoteException {
         Test.PrintTree(tree, "");
+    }
+
+    @Override
+    public String getDataFile() throws RemoteException {
+        String data = "";
+        try {
+            String string;
+            System.out.println(rootFolder);
+            FileReader f = new FileReader(rootFolder);
+            BufferedReader b = new BufferedReader(f);
+            while((string = b.readLine())!=null) {
+                data += string;
+            }
+            b.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return data;
     }
 }

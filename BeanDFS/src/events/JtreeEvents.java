@@ -5,10 +5,14 @@
  */
 package events;
 
+import connections.ClientInterface;
+import connections.Connection;
 import connections.DirectoryTree;
+import connections.DirectoryTreeClient;
 import connections.Server;
 import connections.ServerInterface;
 import java.rmi.RemoteException;
+import javax.swing.JTextArea;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -28,7 +32,8 @@ public class JtreeEvents {
      */
     private void fillTree (DefaultMutableTreeNode node, DirectoryTree file) {
         for (DirectoryTree f : file.getChildren()) {
-            DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(f.getName());
+            System.out.println(f.getName() + " " + f.isDirectory());
+            DirectoryTreeClient newNode = new DirectoryTreeClient(f.getName(), f.getPath(), f.isDirectory());
             if (f.isDirectory()) {
                 fillTree(newNode, f);
             }
@@ -40,6 +45,7 @@ public class JtreeEvents {
      * Funcion para refrescar el jtree
      * @param server
      * @param uiTree 
+     * @throws java.rmi.RemoteException 
      */
     public void refreshTree(ServerInterface server, JTree uiTree) throws RemoteException {
         DefaultTreeModel model = (DefaultTreeModel) uiTree.getModel();
@@ -47,11 +53,35 @@ public class JtreeEvents {
         DirectoryTree dirTree = server.getDirectoryTree();
         System.out.println(dirTree.getName());
         for (DirectoryTree file : dirTree.getChildren()) {
-            DefaultMutableTreeNode node = new DefaultMutableTreeNode(file.getName());
+            DirectoryTreeClient node = new DirectoryTreeClient(file.getName(), file.getPath(), file.isDirectory());
+            System.out.println(file.getName() + " " + file.isDirectory());
             if (file.isDirectory()) {
                 fillTree(node, file);
             }
             root.add(node);
+        }
+    }
+    
+    /**
+     * Fuhcion para mostrar los datos al JTextArea
+     * @param tree
+     * @param textArea
+     * @param connection 
+     * @throws java.rmi.RemoteException 
+     */
+    public void showDataFile(JTree tree, JTextArea textArea, Connection connection) throws RemoteException {
+        DirectoryTreeClient node = (DirectoryTreeClient) tree.getLastSelectedPathComponent();
+        if (node != null) {
+            String path = node.getPathFile();
+            System.out.println(node.getName());
+            System.out.println(node.isDirectory());
+            if (!node.isDirectory()) {
+                System.out.println("Solicitando Archivo");
+                ServerInterface server = connection.getServer();
+                ClientInterface client = connection.getClient();
+                server.requestFileFromServer(path, client);
+                textArea.setText(client.getDataFile());
+            }
         }
     }
     
