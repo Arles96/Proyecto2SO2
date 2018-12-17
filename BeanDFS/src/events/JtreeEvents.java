@@ -32,7 +32,6 @@ public class JtreeEvents {
      */
     private void fillTree (DefaultMutableTreeNode node, DirectoryTree file) {
         for (DirectoryTree f : file.getChildren()) {
-            System.out.println(f.getName() + " " + f.isDirectory());
             DirectoryTreeClient newNode = new DirectoryTreeClient(f.getName(), f.getPath(), f.isDirectory());
             if (f.isDirectory()) {
                 fillTree(newNode, f);
@@ -51,10 +50,8 @@ public class JtreeEvents {
         DefaultTreeModel model = (DefaultTreeModel) uiTree.getModel();
         DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
         DirectoryTree dirTree = server.getDirectoryTree();
-        System.out.println(dirTree.getName());
         for (DirectoryTree file : dirTree.getChildren()) {
             DirectoryTreeClient node = new DirectoryTreeClient(file.getName(), file.getPath(), file.isDirectory());
-            System.out.println(file.getName() + " " + file.isDirectory());
             if (file.isDirectory()) {
                 fillTree(node, file);
             }
@@ -73,10 +70,7 @@ public class JtreeEvents {
         DirectoryTreeClient node = (DirectoryTreeClient) tree.getLastSelectedPathComponent();
         if (node != null) {
             String path = node.getPathFile();
-            System.out.println(node.getName());
-            System.out.println(node.isDirectory());
             if (!node.isDirectory()) {
-                System.out.println("Solicitando Archivo");
                 ServerInterface server = connection.getServer();
                 ClientInterface client = connection.getClient();
                 server.requestFileFromServer(path, client);
