@@ -118,6 +118,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_salvar.setContentAreaFilled(false);
         b_salvar.setOpaque(true);
         b_salvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_salvarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 b_salvarMouseEntered(evt);
             }
@@ -493,6 +496,18 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void b_DesconectarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_DesconectarMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_b_DesconectarMouseClicked
+
+    private void b_salvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_salvarMouseClicked
+        // TODO add your handling code here:
+        try {
+            String data = textFile.getText();
+            if (data.isEmpty()) data = "";
+            String name = bCrearEvents.modifyFile(treeStructure, connection, data);
+            JOptionPane.showMessageDialog(this, "Modificado archivo: " + name);
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(this, "Error al crear el archivo", "Error", ERROR);
+        }
+    }//GEN-LAST:event_b_salvarMouseClicked
 
 
     /**
