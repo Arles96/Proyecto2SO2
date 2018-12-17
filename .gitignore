@@ -6,6 +6,12 @@
 /RMICHAT/build/
 /BeanDFS/nbproject/private
 /BeanDFS/build/
+**/nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
 
 # Compiled class file
 *.class
