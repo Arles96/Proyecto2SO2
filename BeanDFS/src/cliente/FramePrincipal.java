@@ -5,14 +5,21 @@
  */
 package cliente;
 
+import connections.ClientInterface;
 import connections.Connection;
+import connections.DirectoryTreeClient;
 import connections.Server;
 import events.JtreeEvents;
 import java.awt.Color;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import events.EventosBotonesCrear;
 
 /**
  *
@@ -20,8 +27,9 @@ import javax.swing.JOptionPane;
  */
 public class FramePrincipal extends javax.swing.JFrame {
     
-    private Connection connection;
+    private Connection connection = new Connection();
     private final JtreeEvents jtreeEvents = new JtreeEvents();
+    private final EventosBotonesCrear bCrearEvents = new EventosBotonesCrear();
 
     /**
      * Creates new form FramePrincipal
@@ -31,13 +39,13 @@ public class FramePrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("BEANFS");
         this.setResizable(false); 
-        try {
-            connection = new Connection(8888);
-            jtreeEvents.refreshTree(connection.getServer(), treeStructure);
-        } catch (NotBoundException | RemoteException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error de prueba de conexión");
-        }
+//        try {
+//            connection = new Connection(8888);
+//            jtreeEvents.refreshTree(connection.getServer(), treeStructure);
+//        } catch (NotBoundException | RemoteException e) {
+//            e.printStackTrace();
+//            JOptionPane.showMessageDialog(this, "Error de prueba de conexión");
+//        }
     }
 
     /**
@@ -132,6 +140,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_Conectar.setMinimumSize(new java.awt.Dimension(137, 33));
         b_Conectar.setOpaque(true);
         b_Conectar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_ConectarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 b_ConectarMouseEntered(evt);
             }
@@ -170,6 +181,11 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
         treeStructure.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        treeStructure.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                treeStructureMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(treeStructure);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 470, 310));
@@ -197,6 +213,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_CrearDirectorio.setContentAreaFilled(false);
         b_CrearDirectorio.setOpaque(true);
         b_CrearDirectorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_CrearDirectorioMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 b_CrearDirectorioMouseEntered(evt);
             }
@@ -224,6 +243,11 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/images/refresh-arrow.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, -1));
 
         textFile.setColumns(20);
@@ -310,6 +334,9 @@ public class FramePrincipal extends javax.swing.JFrame {
     
     private void b_DesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_DesconectarActionPerformed
         // TODO add your handling code here:
+        connection.desconnect();
+        treeStructure.setModel(new DefaultTreeModel(new DefaultMutableTreeNode("root")));
+        JOptionPane.showMessageDialog(this, "Se ha desconectado");
     }//GEN-LAST:event_b_DesconectarActionPerformed
 
     private void b_ConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_ConectarActionPerformed
@@ -385,6 +412,45 @@ public class FramePrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         setColorRed(b_Desconectar);
     }//GEN-LAST:event_b_DesconectarMouseExited
+
+    private void treeStructureMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_treeStructureMouseClicked
+        try {
+            jtreeEvents.showDataFile(treeStructure, textFile, connection);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_treeStructureMouseClicked
+
+    private void b_ConectarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_ConectarMouseClicked
+        String ip = JOptionPane.showInputDialog(this, "Ingrese la ip del servidor");
+        try {
+            connection.setConnection(ip);
+            jtreeEvents.refreshTree(connection.getServer(), treeStructure);
+        } catch (RemoteException ex) {
+            JOptionPane.showMessageDialog(this, "Error en la conexión.", "Error", ERROR);
+        } catch (NotBoundException ex) {
+            JOptionPane.showMessageDialog(this, "Error al obtener los datos.", "Error", ERROR);
+        }
+    }//GEN-LAST:event_b_ConectarMouseClicked
+
+    private void b_CrearDirectorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_CrearDirectorioMouseClicked
+        // TODO add your handling code here:
+        String nombre = JOptionPane.showInputDialog("Ingresar nombre de directorio:");
+        System.out.println(nombre);
+        try {
+            bCrearEvents.crearDirectorio(nombre, treeStructure, connection);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_b_CrearDirectorioMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        try {
+            jtreeEvents.refreshTree(connection.getServer(), treeStructure);
+        } catch (RemoteException e) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar el arbol", "Error", ERROR);
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
 
     /**
      * @param args the command line arguments
