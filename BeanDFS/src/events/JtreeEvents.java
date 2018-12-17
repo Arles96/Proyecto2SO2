@@ -20,6 +20,7 @@ import java.rmi.RemoteException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -77,17 +78,22 @@ public class JtreeEvents {
      * @param connection 
      * @throws java.rmi.RemoteException 
      */
-    public void showDataFile(JTree tree, JTextArea textArea, Connection connection) throws RemoteException, FileNotFoundException {
+    public void showDataFile(JTree tree, JTextArea textArea, Connection connection, JLabel nombre) throws RemoteException, FileNotFoundException {
         DirectoryTreeClient node = (DirectoryTreeClient) tree.getLastSelectedPathComponent();
         if(((Client)connection.getClient()).isInvalid(node.getPathFile()) || !new File(((Client)connection.getClient()).getRootFolder() + "\\" + node.getPathFile()).exists()){
             if (node != null) {
                 System.out.println("Copia invalida");
                 String path = node.getPathFile();
                 if (!node.isDirectory()) {
+                    textArea.setText("");
+                    nombre.setText("");
+                    nombre.setText(node.getName());
                     ServerInterface server = connection.getServer();
                     ClientInterface client = connection.getClient();
                     server.requestFileFromServer(path, client);
                     textArea.setText(client.getDataFile());
+                }else{
+                    textArea.setText("");
                 }
             }
         }else{
@@ -95,6 +101,9 @@ public class JtreeEvents {
                 System.out.println("Copia valida");
                 Client client = (Client) connection.getClient();
                 client.setPath(node.getPathFile());
+                textArea.setText("");
+                nombre.setText("");
+                nombre.setText(node.getName());
                 textArea.setText(client.getDataFile());
             }
         }

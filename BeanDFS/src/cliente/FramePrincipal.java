@@ -61,7 +61,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        b_ModificarNombre = new javax.swing.JButton();
         b_salvar = new javax.swing.JButton();
         labelNombre = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -71,7 +70,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         treeStructure = new javax.swing.JTree();
         b_CrearArchivo = new javax.swing.JButton();
         b_CrearDirectorio = new javax.swing.JButton();
-        b_Borrar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         textFile = new javax.swing.JTextArea();
@@ -90,25 +88,6 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/images/coffee-beans.png"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 10, -1, -1));
-
-        b_ModificarNombre.setBackground(new java.awt.Color(71, 120, 197));
-        b_ModificarNombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        b_ModificarNombre.setForeground(new java.awt.Color(255, 255, 255));
-        b_ModificarNombre.setText("Modificar");
-        b_ModificarNombre.setBorderPainted(false);
-        b_ModificarNombre.setContentAreaFilled(false);
-        b_ModificarNombre.setOpaque(true);
-        b_ModificarNombre.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                b_ModificarNombreMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                b_ModificarNombreMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                b_ModificarNombreMouseExited(evt);
-            }
-        });
 
         b_salvar.setBackground(new java.awt.Color(71, 120, 197));
         b_salvar.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -216,7 +195,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 b_CrearArchivoMouseExited(evt);
             }
         });
-        jPanel3.add(b_CrearArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 470, 50));
+        jPanel3.add(b_CrearArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 470, 75));
 
         b_CrearDirectorio.setBackground(new java.awt.Color(71, 120, 197));
         b_CrearDirectorio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -235,23 +214,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 b_CrearDirectorioMouseExited(evt);
             }
         });
-        jPanel3.add(b_CrearDirectorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 470, 50));
-
-        b_Borrar.setBackground(new java.awt.Color(199, 73, 58));
-        b_Borrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        b_Borrar.setForeground(new java.awt.Color(255, 255, 255));
-        b_Borrar.setText("Borrar");
-        b_Borrar.setContentAreaFilled(false);
-        b_Borrar.setOpaque(true);
-        b_Borrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                b_BorrarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                b_BorrarMouseExited(evt);
-            }
-        });
-        jPanel3.add(b_Borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 470, 50));
+        jPanel3.add(b_CrearDirectorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 470, 75));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/images/refresh-arrow.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
@@ -272,18 +235,15 @@ public class FramePrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1061, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelNombre)
-                                .addGap(32, 32, 32)
-                                .addComponent(b_ModificarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(b_salvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(labelNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+                            .addComponent(b_salvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1061, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -293,9 +253,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(b_ModificarNombre)
-                            .addComponent(labelNombre))
+                        .addComponent(labelNombre)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2)
                         .addGap(14, 14, 14)
@@ -369,16 +327,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         setColorBlue(b_salvar);
     }//GEN-LAST:event_b_salvarMouseExited
 
-    private void b_ModificarNombreMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_ModificarNombreMouseEntered
-        // TODO add your handling code here:
-        setColorGreen(b_ModificarNombre);
-    }//GEN-LAST:event_b_ModificarNombreMouseEntered
-
-    private void b_ModificarNombreMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_ModificarNombreMouseExited
-        // TODO add your handling code here:
-        setColorBlue(b_ModificarNombre);
-    }//GEN-LAST:event_b_ModificarNombreMouseExited
-
     private void b_CrearArchivoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_CrearArchivoMouseEntered
         // TODO add your handling code here:
         setColorGreenDark(b_CrearArchivo);
@@ -398,16 +346,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         setColorBlue(b_CrearDirectorio);
     }//GEN-LAST:event_b_CrearDirectorioMouseExited
-
-    private void b_BorrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_BorrarMouseEntered
-        // TODO add your handling code here:
-        setColorRedDark(b_Borrar);
-    }//GEN-LAST:event_b_BorrarMouseEntered
-
-    private void b_BorrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_BorrarMouseExited
-        // TODO add your handling code here:
-        setColorRed(b_Borrar);
-    }//GEN-LAST:event_b_BorrarMouseExited
 
     private void b_ConectarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_ConectarMouseEntered
         // TODO add your handling code here:
@@ -431,7 +369,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     private void treeStructureMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_treeStructureMouseClicked
         try {
-            jtreeEvents.showDataFile(treeStructure, textFile, connection);
+            jtreeEvents.showDataFile(treeStructure, textFile, connection, labelNombre);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_treeStructureMouseClicked
@@ -481,17 +419,6 @@ public class FramePrincipal extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(this, "Error al crear el archivo", "Error", ERROR);
         }
     }//GEN-LAST:event_b_CrearArchivoMouseClicked
-
-    private void b_ModificarNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_ModificarNombreMouseClicked
-        try {
-            String data = textFile.getText();
-            if (data.isEmpty()) data = "";
-            String name = bCrearEvents.modifyFile(treeStructure, connection, data);
-            JOptionPane.showMessageDialog(this, "Modificado archivo: " + name);
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(this, "Error al crear el archivo", "Error", ERROR);
-        }
-    }//GEN-LAST:event_b_ModificarNombreMouseClicked
 
     private void b_DesconectarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_DesconectarMouseClicked
         // TODO add your handling code here:
@@ -547,12 +474,10 @@ public class FramePrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton b_Borrar;
     private javax.swing.JButton b_Conectar;
     private javax.swing.JButton b_CrearArchivo;
     private javax.swing.JButton b_CrearDirectorio;
     private javax.swing.JButton b_Desconectar;
-    private javax.swing.JButton b_ModificarNombre;
     private javax.swing.JButton b_salvar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
