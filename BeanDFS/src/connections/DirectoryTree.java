@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ServerGui;
+package connections;
 
-import rmichat.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -33,6 +32,7 @@ public class DirectoryTree implements Serializable{
         this.directory = directory;
         this.parent = null;
         this.children = new ArrayList();
+        this.directory = true;
         this.path = "";
     }
     

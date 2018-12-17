@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ServerGui;
+package connections;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -42,7 +42,7 @@ public class Test {
     }
     
     public static void PrintTree(DirectoryTree tree, String tabs){
-        System.out.println(tabs + tree.getName() + "\t" + tree.getPath() + "\t" + tree.isDirectory());
+        System.out.println(tabs + tree.getName() + "\t" + tree.getPath());
         for (DirectoryTree dirTree : tree.getChildren()) {
             PrintTree(dirTree, tabs + "\t");
         }

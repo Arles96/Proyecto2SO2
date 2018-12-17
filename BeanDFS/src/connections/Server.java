@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ServerGui;
+package connections;
 
 /**
  *
@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import rmichat.*;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     private void fillTree(DirectoryTree tree, File path){
         for (File file : path.listFiles()) {
             if (file.isDirectory()){
-                tree.addChildren(new DirectoryTree(file.getName(), true));
+                tree.addChildren(new DirectoryTree(file.getName(), false));
                 fillTree(tree.getChild(tree.getChildren().size() - 1), file);
             }else{
                 tree.addChildren(new DirectoryTree(file.getName(), false));
@@ -84,7 +83,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
             fr.close();
             for (ClientInterface client : clients) {
                 //client.notifyChangedFile();
-                //
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
@@ -127,5 +125,10 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public DirectoryTree getDirectoryTree() throws RemoteException {
+        return dirTree;
     }
 }

@@ -1,5 +1,11 @@
 /Cliente/nbproject/private/
 /Cliente/build/
+/Cliente/nbproject/private
+/Cliente/build/
+/RMICHAT/nbproject/private
+/RMICHAT/build/
+/BeanDFS/nbproject/private
+/BeanDFS/build/
 
 # Compiled class file
 *.class
