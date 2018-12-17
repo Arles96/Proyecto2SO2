@@ -42,10 +42,14 @@ public class EventosBotonesCrear {
             if (node.isDirectory()) {
                 ServerInterface server = connecttion.getServer();
                 server.sendNewFileToServer("Se ha creado el archivo" + name, path + "\\" + name);
+                connecttion.getClient().createFile("Se ha creado el archivo" + name, path + "\\" + name);
+                server.joinServer(connecttion.getClient());
             }
         } else {
             ServerInterface server = connecttion.getServer();
             server.sendNewFileToServer("Se ha creado el archivo" + name, "\\" + name);
+            connecttion.getClient().createFile("Se ha creado el archivo" + name, "\\" + name);
+            server.joinServer(connecttion.getClient());
         }
     }
     
