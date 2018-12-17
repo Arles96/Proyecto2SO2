@@ -11,6 +11,7 @@ import connections.DirectoryTree;
 import connections.DirectoryTreeClient;
 import connections.Server;
 import connections.ServerInterface;
+import connections.Test;
 import java.rmi.RemoteException;
 import javax.swing.JTextArea;
 import javax.swing.JTree;
@@ -50,6 +51,7 @@ public class JtreeEvents {
         DefaultTreeModel model = (DefaultTreeModel) uiTree.getModel();
         DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
         DirectoryTree dirTree = server.getDirectoryTree();
+        Test.PrintTree(dirTree, "");
         for (DirectoryTree file : dirTree.getChildren()) {
             DirectoryTreeClient node = new DirectoryTreeClient(file.getName(), file.getPath(), file.isDirectory());
             if (file.isDirectory()) {
