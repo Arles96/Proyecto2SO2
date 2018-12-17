@@ -30,7 +30,6 @@ public class EventosBotonesCrear {
                 ServerInterface server = connection.getServer();
                 ClientInterface client = connection.getClient();
                 server.requestFileFromServer(path, client);
-                
             }
         }
     }
