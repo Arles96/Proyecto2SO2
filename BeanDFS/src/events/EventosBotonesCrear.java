@@ -9,7 +9,9 @@ import connections.ClientInterface;
 import connections.Connection;
 import connections.DirectoryTreeClient;
 import connections.ServerInterface;
+import java.io.File;
 import java.rmi.RemoteException;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTree;
 
@@ -23,14 +25,9 @@ public class EventosBotonesCrear {
         DirectoryTreeClient node = (DirectoryTreeClient) tree.getLastSelectedPathComponent();
         if (node != null) {
             String path = node.getPathFile();
-            System.out.println(node.getName());
-            System.out.println(node.isDirectory());
             if (node.isDirectory()) {
-                System.out.println("Estoy en un directorio");
                 ServerInterface server = connection.getServer();
-                ClientInterface client = connection.getClient();
-                server.requestFileFromServer(path, client);
-                
+                server.createDirectory(path +"\\"+nombre);
             }
         }
     }
@@ -41,14 +38,14 @@ public class EventosBotonesCrear {
             String path = node.getPathFile();
             if (node.isDirectory()) {
                 ServerInterface server = connecttion.getServer();
-                server.sendNewFileToServer("Se ha creado el archivo" + name, path + "\\" + name);
+                server.sendNewFileToServer("Se ha creado el archivo " + name, path + "\\" + name);
                 connecttion.getClient().createFile("Se ha creado el archivo" + name, path + "\\" + name);
                 server.joinServer(connecttion.getClient());
             }
         } else {
             ServerInterface server = connecttion.getServer();
-            server.sendNewFileToServer("Se ha creado el archivo" + name, "\\" + name);
-            connecttion.getClient().createFile("Se ha creado el archivo" + name, "\\" + name);
+            server.sendNewFileToServer("Se ha creado el archivo " + name, "\\" + name);
+            connecttion.getClient().createFile("Se ha creado el archivo " + name, "\\" + name);
             server.joinServer(connecttion.getClient());
         }
     }
