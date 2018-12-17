@@ -88,4 +88,26 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
         }
         return data;
     }
+
+    @Override
+    public void createDirectory(String path) throws RemoteException {
+        File newDir = new File(rootFolder.getAbsolutePath() + path);
+        newDir.mkdirs();
+    }
+
+    @Override
+    public void createFile(String data, String path) throws RemoteException {
+        try {
+            File filePath = new File(rootFolder.getAbsolutePath() + path);
+            filePath.getParentFile().mkdirs();
+            FileWriter fr = new FileWriter(filePath);
+            fr.write(data);
+            fr.flush();
+            fr.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

@@ -35,4 +35,18 @@ public class EventosBotonesCrear {
         }
     }
     
+    public void createFile (String name, JTree tree, Connection connecttion) throws RemoteException {
+        DirectoryTreeClient node = (DirectoryTreeClient) tree.getLastSelectedPathComponent();
+        if (node != null) {
+            String path = node.getPathFile();
+            if (node.isDirectory()) {
+                ServerInterface server = connecttion.getServer();
+                server.sendNewFileToServer("Se ha creado el archivo" + name, path + "\\" + name);
+            }
+        } else {
+            ServerInterface server = connecttion.getServer();
+            server.sendNewFileToServer("Se ha creado el archivo" + name, "\\" + name);
+        }
+    }
+    
 }
