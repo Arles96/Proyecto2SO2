@@ -435,8 +435,9 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void b_CrearDirectorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_CrearDirectorioMouseClicked
         // TODO add your handling code here:
         String nombre = JOptionPane.showInputDialog("Ingresar nombre de directorio:");
-        System.out.println(nombre);
+        //System.out.println(nombre);
         try {
+            System.out.println("Entro");
             bCrearEvents.crearDirectorio(nombre, treeStructure, connection);
         } catch (Exception e) {
         }

@@ -9,6 +9,7 @@ import connections.ClientInterface;
 import connections.Connection;
 import connections.DirectoryTreeClient;
 import connections.ServerInterface;
+import java.io.File;
 import java.rmi.RemoteException;
 import javax.swing.JTextArea;
 import javax.swing.JTree;
@@ -23,14 +24,13 @@ public class EventosBotonesCrear {
         DirectoryTreeClient node = (DirectoryTreeClient) tree.getLastSelectedPathComponent();
         if (node != null) {
             String path = node.getPathFile();
-            System.out.println(node.getName());
-            System.out.println(node.isDirectory());
+            System.out.println("Path:" + path);
             if (node.isDirectory()) {
                 System.out.println("Estoy en un directorio");
                 ServerInterface server = connection.getServer();
-                ClientInterface client = connection.getClient();
-                server.requestFileFromServer(path, client);
+                server.createDirectory(path +"\\"+nombre);
                 
+                              
             }
         }
     }
