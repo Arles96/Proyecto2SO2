@@ -69,7 +69,6 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
     @Override
     public void sendTree(DirectoryTree tree) throws RemoteException {
         this.tree = tree;
-        Test.PrintTree(tree, "");
     }
 
     @Override

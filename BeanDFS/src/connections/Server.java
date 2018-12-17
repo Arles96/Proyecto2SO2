@@ -53,6 +53,8 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     
     private void refillTree(File path){
         dirTree = new DirectoryTree();
+        System.out.println("Refilling tree");
+        Test.PrintTree(dirTree, "");
         fillTree(dirTree, path);
     }
     

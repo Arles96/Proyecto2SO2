@@ -50,6 +50,7 @@ public class JtreeEvents {
     public void refreshTree(ServerInterface server, JTree uiTree) throws RemoteException {
         DefaultTreeModel model = (DefaultTreeModel) uiTree.getModel();
         DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+        root.removeAllChildren();
         DirectoryTree dirTree = server.getDirectoryTree();
         Test.PrintTree(dirTree, "");
         for (DirectoryTree file : dirTree.getChildren()) {
@@ -59,6 +60,8 @@ public class JtreeEvents {
             }
             root.add(node);
         }
+        
+        model.reload();
     }
     
     /**
