@@ -442,6 +442,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         try {
             System.out.println("Entro");
             bCrearEvents.crearDirectorio(nombre, treeStructure, connection);
+            JOptionPane.showMessageDialog(this, "Se ha creado la carpeta "+nombre);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_b_CrearDirectorioMouseClicked
@@ -459,6 +460,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         try {
             String name = JOptionPane.showInputDialog("Ingrese el nombre del archivo");
             bCrearEvents.createFile(name, treeStructure, connection);
+            JOptionPane.showMessageDialog(this, "Se ha creado un archivo nuevo: "+name);
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(this, "Error al crear el archivo", "Error", ERROR);
         }
