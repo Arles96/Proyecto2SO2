@@ -19,4 +19,5 @@ public interface ServerInterface extends Remote{
     public void joinServer(ClientInterface newClient) throws RemoteException;
     public void requestFileFromServer(String path, ClientInterface client) throws RemoteException;
     public DirectoryTree getDirectoryTree () throws RemoteException;
+    public void logout(ClientInterface client) throws RemoteException;
 }

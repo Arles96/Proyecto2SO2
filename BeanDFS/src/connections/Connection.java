@@ -90,8 +90,9 @@ public class Connection {
         server.requestFileFromServer("\\folder1\\text1.txt", client);
     }
     
-    public void desconnect () {
+    public void desconnect () throws RemoteException {
         this.registry = null;
+        this.server.logout(this.client);
         this.server = null;
         this.client = null;
     }

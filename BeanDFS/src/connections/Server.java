@@ -66,25 +66,29 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     @Override
     public void joinServer(ClientInterface newClient) throws RemoteException{
-        clients.add(newClient);
-        try {
-            newClient.sendTree(dirTree);
-        } catch (RemoteException ex) {
-            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+        if(!clients.contains(newClient)){
+            clients.add(newClient);
+            try {
+                newClient.sendTree(dirTree);
+            } catch (RemoteException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println("Nuevo cliente se unio al servidor.");
         }
     }
 
     @Override
     public void sendFileToServer(String data, String path) throws RemoteException {
+        System.out.println("Mod " + path);
+        System.out.println("data " + data);    
         try {
             File filePath = new File(rootDirectory.getAbsolutePath() + path);
-            filePath.getParentFile().mkdirs();
             FileWriter fr = new FileWriter(filePath);
             fr.write(data);
             fr.flush();
             fr.close();
             for (ClientInterface client : clients) {
-                //client.notifyChangedFile();
+                client.notifyChangedFile(path);
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
@@ -107,6 +111,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         System.out.println(this.rootDirectory.getAbsolutePath() + path);
         try {
             txtFile = new Scanner(new File(this.rootDirectory.getAbsolutePath() + path)).useDelimiter("\\Z").next();
+            client.setValid(path);
             client.sendFile(txtFile, path);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
@@ -133,5 +138,10 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     @Override
     public DirectoryTree getDirectoryTree() throws RemoteException {
         return dirTree;
+    }
+
+    @Override
+    public void logout(ClientInterface client) throws RemoteException {
+        clients.remove(client);
     }
 }

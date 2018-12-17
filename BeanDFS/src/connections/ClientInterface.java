@@ -17,5 +17,7 @@ public interface ClientInterface extends Remote{
     public void sendTree(DirectoryTree tree) throws RemoteException;
     public void createDirectory(String path) throws RemoteException;
     public void createFile (String data, String path) throws RemoteException;
+    public void notifyChangedFile(String path) throws RemoteException;
     public String getDataFile () throws RemoteException;
+    public void setValid(String path) throws RemoteException;
 }

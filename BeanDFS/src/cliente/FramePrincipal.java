@@ -99,6 +99,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_ModificarNombre.setContentAreaFilled(false);
         b_ModificarNombre.setOpaque(true);
         b_ModificarNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_ModificarNombreMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 b_ModificarNombreMouseEntered(evt);
             }
@@ -165,6 +168,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_Desconectar.setContentAreaFilled(false);
         b_Desconectar.setOpaque(true);
         b_Desconectar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_DesconectarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 b_DesconectarMouseEntered(evt);
             }
@@ -336,8 +342,12 @@ public class FramePrincipal extends javax.swing.JFrame {
     
     
     private void b_DesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_DesconectarActionPerformed
-        // TODO add your handling code here:
-        connection.desconnect();
+        try {
+            // TODO add your handling code here:
+            connection.desconnect();
+        } catch (RemoteException ex) {
+            System.out.println("Error en logout");
+        }
         treeStructure.setModel(new DefaultTreeModel(new DefaultMutableTreeNode("root")));
         JOptionPane.showMessageDialog(this, "Se ha desconectado");
     }//GEN-LAST:event_b_DesconectarActionPerformed
@@ -460,12 +470,29 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void b_CrearArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_CrearArchivoMouseClicked
         try {
             String name = JOptionPane.showInputDialog("Ingrese el nombre del archivo");
-            bCrearEvents.createFile(name, treeStructure, connection);
-            JOptionPane.showMessageDialog(this, "Se ha creado un archivo nuevo: "+name);
+            String data = textFile.getText();
+            if (data.isEmpty()) data = "";
+            bCrearEvents.createFile(name, treeStructure, connection, data);
+            JOptionPane.showMessageDialog(this, "Se ha creado un archivo nuevo: " + name);
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(this, "Error al crear el archivo", "Error", ERROR);
         }
     }//GEN-LAST:event_b_CrearArchivoMouseClicked
+
+    private void b_ModificarNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_ModificarNombreMouseClicked
+        try {
+            String data = textFile.getText();
+            if (data.isEmpty()) data = "";
+            String name = bCrearEvents.modifyFile(treeStructure, connection, data);
+            JOptionPane.showMessageDialog(this, "Modificado archivo: " + name);
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(this, "Error al crear el archivo", "Error", ERROR);
+        }
+    }//GEN-LAST:event_b_ModificarNombreMouseClicked
+
+    private void b_DesconectarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_DesconectarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_DesconectarMouseClicked
 
 
     /**

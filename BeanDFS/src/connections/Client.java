@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,9 +29,15 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
     private boolean active;
     private File rootFolder;
     private String path;
+    private File metadata;
 
-    public Client(String path) throws RemoteException {
+    public Client(String path) throws RemoteException{
         rootFolder = new File(path);
+        metadata = new File(".\\DFSMetadata.txt");
+        /*FileWriter fr = new FileWriter(metadata);
+        fr.append("");
+        fr.flush();
+        fr.close();*/
     }
 
     public boolean isActive() {
@@ -48,7 +55,23 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
     public void setTree(DirectoryTree tree) {
         this.tree = tree;
     }
-    
+
+    public File getRootFolder() {
+        return rootFolder;
+    }
+
+    public void setRootFolder(File rootFolder) {
+        this.rootFolder = rootFolder;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     @Override
     public void sendFile(String data, String path) throws RemoteException {
         try {
@@ -63,7 +86,7 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }       
+        }
     }
 
     @Override
@@ -79,7 +102,7 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
             File filePath = new File(rootFolder.getAbsolutePath() + path);
             FileReader f = new FileReader(filePath);
             BufferedReader b = new BufferedReader(f);
-            while((string = b.readLine())!=null) {
+            while ((string = b.readLine()) != null) {
                 data += string;
             }
             b.close();
@@ -108,6 +131,74 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void notifyChangedFile(String path) throws RemoteException {
+        ArrayList<String> metadataList = readMetadata();
+        System.out.println("metadata: " + metadataList);
+        System.out.println("notify " + path);
+        if (!metadataList.contains(path)) {
+            try {
+                FileWriter fr = new FileWriter(metadata, true);
+                fr.write("\n");
+                fr.write(path);
+                fr.flush();
+                fr.close();
+                System.out.println("Notificado");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                System.out.println("Error en escritura de cache.");
+            }
+        }
+    }
+
+    public boolean isInvalid(String path) {
+        ArrayList<String> metadataList = readMetadata();
+        return metadataList.contains(path);
+    }
+
+    @Override
+    public void setValid(String path) {
+        ArrayList<String> metadataList = readMetadata();
+        System.out.println("Antes de remover " + metadataList);
+        metadataList.remove(path);
+        System.out.println("Despues de remover " + metadataList);
+        
+        writeMetadata(metadataList);
+    }
+
+    private ArrayList<String> readMetadata() {
+        ArrayList<String> arr = new ArrayList();
+        System.out.println("Antes de leer");
+        try {
+            Scanner sc = new Scanner(metadata);
+            while (sc.hasNextLine()) {
+                arr.add(sc.nextLine());
+            }
+            System.out.println("Leyo la metadata");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            System.out.println("Error en lectura de cache.");
+        }
+
+        return arr;
+    }
+
+    private void writeMetadata(ArrayList<String> metadataList) {
+        try {
+            FileWriter fr = new FileWriter(metadata);
+            for (String string : metadataList) {
+                fr.append("\n");
+                fr.append(string);
+            }
+            fr.flush();
+            fr.close();
+            System.out.println("Escribio la metadata");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            System.out.println("Error en escritura de cache.");
         }
     }
 }

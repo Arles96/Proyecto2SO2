@@ -50,4 +50,43 @@ public class EventosBotonesCrear {
         }
     }
     
+    public void createFile (String name, JTree tree, Connection connecttion, String data) throws RemoteException {
+        DirectoryTreeClient node = (DirectoryTreeClient) tree.getLastSelectedPathComponent();
+        if (node != null) {
+            String path = node.getPathFile();
+            if (node.isDirectory()) {
+                ServerInterface server = connecttion.getServer();
+                server.sendNewFileToServer(data, path + "\\" + name);
+                connecttion.getClient().createFile(data, path + "\\" + name);
+                server.joinServer(connecttion.getClient());
+            }
+        } else {
+            ServerInterface server = connecttion.getServer();
+            server.sendNewFileToServer(data, "\\" + name);
+            connecttion.getClient().createFile(data, "\\" + name);
+            server.joinServer(connecttion.getClient());
+        }
+    }
+    
+    public String modifyFile (JTree tree, Connection connecttion, String data) throws RemoteException {
+        DirectoryTreeClient node = (DirectoryTreeClient) tree.getLastSelectedPathComponent();
+        if (node != null) {
+            String path = node.getPathFile();
+            String name = node.getName();
+            if (!node.isDirectory()) {
+                ServerInterface server = connecttion.getServer();
+                server.sendFileToServer(data, path);
+                connecttion.getClient().createFile(data, path);
+                server.joinServer(connecttion.getClient());
+            }
+            return name;
+        } else {
+            String name = node.getName();
+            ServerInterface server = connecttion.getServer();
+            server.sendFileToServer(data, "\\" + name);
+            connecttion.getClient().createFile(data, "\\" + name);
+            server.joinServer(connecttion.getClient());
+            return name;
+        }
+    }
 }

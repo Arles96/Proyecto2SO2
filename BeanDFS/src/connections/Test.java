@@ -8,6 +8,7 @@ package connections;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -17,17 +18,24 @@ import java.util.Scanner;
  */
 public class Test {
     public static void main(String[] argv) throws FileNotFoundException{
-        DirectoryTree tree = new DirectoryTree("\\", true);
+        /*DirectoryTree tree = new DirectoryTree("\\", true);
         String user = System.getenv("UserProfile");
         String dfsFolder = "DFS_Files";
         String rootFolder = user + "\\Documents\\" + dfsFolder;
         File f = new File(rootFolder);
         FillTree(tree, f);
         PrintTree(tree, "");
-        System.out.println(ReadEntireFile(tree.getChild(0).getChild(0).getChild(0).getPath(), rootFolder));
+        System.out.println(ReadEntireFile(tree.getChild(0).getChild(0).getChild(0).getPath(), rootFolder));*/
         //System.out.println(Arrays.toString(f.list()));
         //System.out.println(tree.getChild(0).getChild(0));
-    
+        
+        ArrayList<String> arr = new ArrayList();
+        
+        arr.add("aaaa");
+        arr.add("bbbb");
+        arr.add("cccc");
+        
+        System.out.println(arr.contains("aaaa"));
     }
     
     public static void FillTree(DirectoryTree tree, File path){
